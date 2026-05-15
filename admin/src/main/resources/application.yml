@@ -1,0 +1,48 @@
+server:
+  # Legacy backend stays off the main RuoYi port to avoid accidental startup conflicts.
+  port: 18080
+
+spring:
+  application:
+    name: quant-road-admin-legacy
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db-quant
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+  quartz:
+    job-store-type: memory
+    properties:
+      org.quartz.scheduler.instanceName: QuantRoadScheduler
+      org.quartz.threadPool.threadCount: 3
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+
+quant-road:
+  python:
+    executable: python
+    workdir: ../python
+    moduleName: quant_road
+    defaultStartDate: 20230101
+    strategyBacktestStartDate: 2023-01-01
+    notifyByDefault: true
+  notification:
+    enabled: false
+    webhook: ""
+    type: dingding
+
+logging:
+  level:
+    com.quantroad: INFO

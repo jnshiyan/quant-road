@@ -1,0 +1,3 @@
+stock_code,side,quantity,price,trade_date,signal_id,commission,tax,slippage,external_order_id
+000001,BUY,100,10.23,2026-05-04,,0.0003,0,0.0005,BROKER-ORDER-001
+600519,BUY,100,1688.00,2026-05-04,,0.0003,0.001,0.0008,BROKER-ORDER-002
